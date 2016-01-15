@@ -1,0 +1,14 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "resolutions": {
+    "angular": "1.4.4",
+    "meteor-client-side": "~1.2.0"
+  },
+  "dependencies": {
+    "meteor-client-side": "~1.2.0"
+  }
+}
