@@ -1,1 +1,25 @@
 /* Empty. Add your own CSS if you like */
+.map{
+	height: 150px;
+	padding-top : 10px;
+	margin-bottom: 10px !important;
+}
+.input-map{
+	padding: 10px; 
+}
+input.inline-input + i{
+	display:inline-block;
+}
+.inline-input{
+	display:inline-block !important;
+	width : 95% !important;
+}
+.button-bottom-scroll{
+	position: absolute;
+	bottom : 0;
+	z-index: 999;
+	margin-bottom: 0px !important;
+}
+.content-bottom-scroll{
+	height :100%;
+}

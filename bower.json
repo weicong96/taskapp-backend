@@ -9,6 +9,7 @@
     "meteor-client-side": "~1.2.0"
   },
   "dependencies": {
-    "meteor-client-side": "~1.2.0"
+    "meteor-client-side": "~1.2.0",
+    "ngmap": "~1.16.7"
   }
 }

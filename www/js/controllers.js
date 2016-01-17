@@ -53,4 +53,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+.controller("AddTaskCtrl", function($scope, NgMap){
+  NgMap.getMap().then(function(map){
+    console.log(map);
+  });
 });
