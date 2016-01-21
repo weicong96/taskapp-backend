@@ -1,11 +1,8 @@
 /* Empty. Add your own CSS if you like */
 .map{
-	height: 150px;
+	height: 100% !important;
 	padding-top : 10px;
 	margin-bottom: 10px !important;
-}
-.input-map{
-	padding: 10px; 
 }
 input.inline-input + i{
 	display:inline-block;

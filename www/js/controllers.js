@@ -54,7 +54,12 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
-.controller("AddTaskCtrl", function($scope, NgMap){
+.controller("AddTaskCtrl", function($scope, NgMap, $state){
+  $scope.redirect = function(){
+    
+    $state.go("app.addLocation");
+  }
+
   NgMap.getMap().then(function(map){
     console.log(map);
   });

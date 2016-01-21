@@ -7,11 +7,19 @@
           <input type="text" placeholder="Describe your task eg. buy groceries">
         </label>
 
-        <label class="item item-input item-stacked-label input-map">
-          <span class="input-label">Location</span><br>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label" style="margin-bottom: 8px;">Location</span>
 
-          
-    <a class="button button-icon icon ion-plus-round"></a> <span class="input-label">Add Location</span>
+          <ion-list>
+            <ion-item style='margin-right:16px' ng-repeat="item in [0,1,2]">
+              Hello, {{item}}!<br>
+              Blk 333 Sembawang Close
+            </ion-item>
+          </ion-list>
+          <div on-tap="redirect()">
+            <a class="button button-icon icon ion-plus-round" ></a> 
+            <span class="input-label">Select different location</span>
+          </div>
         </label>
         <label class="item item-input item-select">
           <div class="input-label">
