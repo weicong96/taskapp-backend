@@ -1,3 +1,4 @@
+
 <ion-view view-title="Browse">
   <ion-content>
     <div class="list content-bottom-scroll">
@@ -10,15 +11,10 @@
         <label class="item item-input item-stacked-label">
           <span class="input-label" style="margin-bottom: 8px;">Location</span>
 
-          <ion-list>
-            <ion-item style='margin-right:16px' ng-repeat="item in [0,1,2]">
-              Hello, {{item}}!<br>
-              Blk 333 Sembawang Close
-            </ion-item>
-          </ion-list>
-          <div on-tap="redirect()">
+      
+          <div on-tap="openModal()">
             <a class="button button-icon icon ion-plus-round" ></a> 
-            <span class="input-label">Select different location</span>
+            <span class="input-label">Add your location</span>
           </div>
         </label>
         <label class="item item-input item-select">

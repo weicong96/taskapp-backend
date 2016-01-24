@@ -54,13 +54,19 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
-.controller("AddTaskCtrl", function($scope, NgMap, $state){
-  $scope.redirect = function(){
-    
-    $state.go("app.addLocation");
-  }
+.controller("AddTaskCtrl", function($scope, NgMap, $state,$ionicModal){
+  $scope.openModal = function(){
+    $ionicModal.fromTemplateUrl("templates/addLocation.html",{
+      scope : $scope,
+      animation : 'slide-in-up'
+    }).then(function(modal){
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
 
-  NgMap.getMap().then(function(map){
-    console.log(map);
-  });
+  }
+  
+    NgMap.getMap().then(function(map){
+      console.log(map);
+    });
 });
