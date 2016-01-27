@@ -54,16 +54,14 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 .controller("AddLocationCtrl", function($scope){
-  $scope.text = '';
-  /*
-  $scope.geocode = function(){
-    console.log($scope.text);
-    Meteor.call("geocode", {text : $scope.searchText}, (err, result)=>{
-      console.log(result);
+
+  $scope.geocode = function(text){
+    Meteor.call("geocode", text.$modelValue, (err, result)=>{
+      $scope.results = result;
     });
-  }*/
+  }
 })
-.controller("AddTaskCtrl", function($scope, $state,$ionicModal){
+.controller("AddTaskCtrl", function($scope, $state,$ionicModal, $ionicHistory){
 
   $scope.openModal = function(){
     $state.go("app.addLocation");

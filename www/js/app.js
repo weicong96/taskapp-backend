@@ -46,7 +46,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
     views: {
       'menuContent': {
         templateUrl: 'templates/addLocation.html',
-        controller: 'PlaylistCtrl'
+        controller: 'AddLocationCtrl'
       }
     }
   });

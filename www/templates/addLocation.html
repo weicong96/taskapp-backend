@@ -1,29 +1,34 @@
-<ion-modal-view ng-controller="AddLocationCtrl">
+<ion-view view-title="Browse">
   <ion-header-bar>
       <h1 class="title">Browse</h1>
   </ion-header-bar>
   <ion-content>
-    <form>
+    <form name="addLocationForm" novalidate="true">
       <div class="list content-bottom-scroll">
               <div class="item-input-inset">
                 <label class="item-input-wrapper">
-                  <input class='inline-input' ng-model="text" type="text"  placeholder="Enter an address to search">
+                  <input class='inline-input' name="text" ng-change="$parent.geocode(addLocationForm.text)" ng-model="text" type="text"  placeholder="Enter an address to search">
                 </label>
               </div>
-              <ion-list ng-show="text == '' || text.$pristine">
+              <ion-list ng-show="!addLocationForm.text.$modelValue.length || addLocationForm.text.$pristine">
                 <ion-item ng-repeat="item in [0,1,2]">
                   Hello, {{item}}!<br>
                   Blk 111 Sembawang Close
                 </ion-item>
               </ion-list>
 
+              <ion-list ng-hide="!addLocationForm.text.$modelValue.length || addLocationForm.text.$pristine">
+                <ion-item ng-repeat="item in results">
+                  {{item.formattedAddress}}
+                </ion-item>
+              </ion-list>
       </div>
     </form>
   </ion-content>
-</ion-modal-view>
+</ion-view>
+
 
 <!--
-
 <ion-view view-title="Add Location">
   <ion-content>
     <div class="list content-bottom-scroll">
