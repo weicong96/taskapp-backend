@@ -32,7 +32,6 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -54,19 +53,20 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
-.controller("AddTaskCtrl", function($scope, NgMap, $state,$ionicModal){
-  $scope.openModal = function(){
-    $ionicModal.fromTemplateUrl("templates/addLocation.html",{
-      scope : $scope,
-      animation : 'slide-in-up'
-    }).then(function(modal){
-      $scope.modal = modal;
-      $scope.modal.show();
+.controller("AddLocationCtrl", function($scope){
+  $scope.text = '';
+  /*
+  $scope.geocode = function(){
+    console.log($scope.text);
+    Meteor.call("geocode", {text : $scope.searchText}, (err, result)=>{
+      console.log(result);
     });
+  }*/
+})
+.controller("AddTaskCtrl", function($scope, $state,$ionicModal){
 
+  $scope.openModal = function(){
+    $state.go("app.addLocation");
   }
-  
-    NgMap.getMap().then(function(map){
-      console.log(map);
-    });
+
 });

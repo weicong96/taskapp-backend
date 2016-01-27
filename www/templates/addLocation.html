@@ -1,22 +1,22 @@
-<ion-modal-view>
+<ion-modal-view ng-controller="AddLocationCtrl">
   <ion-header-bar>
       <h1 class="title">Browse</h1>
   </ion-header-bar>
   <ion-content>
-    <form name="addLocationForm" novalidate="" >
+    <form>
       <div class="list content-bottom-scroll">
               <div class="item-input-inset">
                 <label class="item-input-wrapper">
-                  <input class='inline-input' type="text" name="searchText" ng-model="searchText" placeholder="Enter an address to search">
+                  <input class='inline-input' ng-model="text" type="text"  placeholder="Enter an address to search">
                 </label>
               </div>
-              <ion-list ng-show="searchText == '' || addLocationForm.searchText.$pristine">
+              <ion-list ng-show="text == '' || text.$pristine">
                 <ion-item ng-repeat="item in [0,1,2]">
                   Hello, {{item}}!<br>
-                  Blk 333 Sembawang Close
+                  Blk 111 Sembawang Close
                 </ion-item>
               </ion-list>
-              
+
       </div>
     </form>
   </ion-content>
