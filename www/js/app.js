@@ -40,7 +40,6 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
         }
       }
     })
-
   .state('app.addLocation', {
     url: '/location',
     views: {
@@ -49,9 +48,18 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
         controller: 'AddLocationCtrl'
       }
     }
+  })
+  .state('app.chooseLocation', {
+    url: '/chooseLocation',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chooseLocation.html',
+        controller: 'ChooseLocationCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/chooseLocation');
 
   $ionicConfigProvider.scrolling.jsScrolling(true);
 });

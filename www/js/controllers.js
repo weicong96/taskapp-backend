@@ -58,13 +58,17 @@ angular.module('starter.controllers', [])
   $scope.geocode = function(text){
     Meteor.call("geocode", text.$modelValue, (err, result)=>{
       $scope.results = result;
+      console.log($scope.results);
     });
   }
 })
 .controller("AddTaskCtrl", function($scope, $state,$ionicModal, $ionicHistory){
-
   $scope.openModal = function(){
+    $state.go("app.chooseLocation");
+  }
+})
+.controller("ChooseLocationCtrl" , function($scope, $state){
+  $scope.chooseLocation = function(){
     $state.go("app.addLocation");
   }
-
 });
