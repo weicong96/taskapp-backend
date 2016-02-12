@@ -1,0 +1,17 @@
+<ion-view view-title="Choose Location">
+  <ion-content scroll="false" has-bouncing="false">
+    <div style="position: relative;height:100%">
+      <div class="overlay-input bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input type="search" placeholder="Search" ng-model='address.name' ng-click="chooseLocation()">
+        </label>
+        <button ng-click="useLocation()" class="button button-clear">
+          Use this
+        </button>
+      </div>
+
+      <my-map zoom='zoom' center='center' markers='markers'></my-map>
+    </div>
+  </ion-content>
+</ion-view>

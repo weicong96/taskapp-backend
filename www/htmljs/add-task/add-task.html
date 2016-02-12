@@ -1,10 +1,10 @@
 
-<ion-view view-title="Browse">
+<ion-view view-title="Add Task">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
     </button>
-  </ion-nav-buttons>-->
-  <ion-content>
+  </ion-nav-buttons>
+  <ion-content scroll="false">
     <div class="list content-bottom-scroll">
       <div class="bottom-form">
         <label class="item item-input item-stacked-label">
@@ -12,11 +12,13 @@
           <input type="text" placeholder="Describe your task eg. buy groceries">
         </label>
 
-        <label class="item item-input item-stacked-label">
-          <span class="input-label" style="margin-bottom: 8px;">Location</span>
-
-
-          <div on-tap="openModal()">
+        <label class="item item-stacked-label">
+          <span class="item-stacked-label" style="margin-bottom: 8px;">Location</span>
+          <div ng-show="location == undefined">
+            <p>{{ location+'  '+location }}</p>
+            <my-map id='task-map'></my-map>
+          </div>
+          <div on-tap="openModal()" ng-show="location == undefined">
             <a class="button button-icon icon ion-plus-round">&nbsp;</a>
             <span class="input-label">Add your location</span>
           </div>

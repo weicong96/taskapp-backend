@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ["angular-meteor"])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -39,36 +39,44 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
 })
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.factory("Config", function(){
+  return {
+    //google_api_key : "AIzaSyBR9SaiQWuSE5fP7QYey15TzHHVBOsi_uc"
+  };
 })
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-})
-.controller("AddLocationCtrl", function($scope){
-
-  $scope.geocode = function(text){
-    Meteor.call("geocode", text.$modelValue, (err, result)=>{
-      $scope.results = result;
-      console.log($scope.results);
+.factory('Geocode', function($q,$timeout, Config){
+  return function(address){
+    var defer = $q.defer();
+    Meteor.call('geocode', address, function(error, result){
+      defer.resolve(result);
     });
+    return defer.promise;
   }
-})
-.controller("AddTaskCtrl", function($scope, $state,$ionicModal, $ionicHistory){
-  $scope.openModal = function(){
-    $state.go("app.chooseLocation");
-  }
-})
-.controller("ChooseLocationCtrl" , function($scope, $state){
-  $scope.chooseLocation = function(){
-    $state.go("app.addLocation");
-  }
+  /*function(address){
+    var defer = $q.defer();
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({address : address},{
+      componentRestrictions: {
+        country : "SG"
+      }
+    }, function(result, status){
+      if(status == google.maps.GeocoderStatus.OK){
+        var properLatLng = [];
+        console.log(result);
+        result.forEach(function(resultEntry){
+          var coordinate = {
+            lat : resultEntry['geometry']['location']['lat'](),
+            lng : resultEntry['geometry']['location']['lng'](),
+            address : resultEntry["formatted_address"]
+          };
+          properLatLng.push(coordinate);
+        });
+        defer.resolve(properLatLng);
+      }else{
+        console.log(status);
+        defer.reject(status);
+      }
+    });
+    return defer.promise;
+  }*/
 });

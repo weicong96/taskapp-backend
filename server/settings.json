@@ -1,3 +1,8 @@
 {
-  "googleApiKey" : "AIzaSyBR9SaiQWuSE5fP7QYey15TzHHVBOsi_uc"
+  "googleApiKey" : "AIzaSyBR9SaiQWuSE5fP7QYey15TzHHVBOsi_uc",
+  "fsq": {
+    "ClientSecret" : "ZPU5WD13TC2LSNRZBYUYXR34JJLNDGQ0IKTB44GGBGSLORPP",
+    "ClientId" : "0NN1MEV5XQZCF1NFWEPR4SW2GPQCDORWVGCIMAQLCMDTKMF0",
+    "Version" : "20160801"
+  }
 }

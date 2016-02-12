@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Select Location</h1>
+  </ion-header-bar>
+  <ion-content>
+    <form name="addLocationForm" novalidate="true">
+      <div class="list content-bottom-scroll">
+        <div class="item-input-inset">
+          <label class="item-input-wrapper">
+            <input class='inline-input' name="text" ng-model-options="{ debounce: 1000 }"  ng-change="geocode(text)" ng-model="text" type="text"  placeholder="Enter an address to search" focus-me>
+          </label>
+        </div>
+        <ion-list>
+          <ion-item ng-click='selectResult(item)' ng-repeat="item in results">
+            {{item.name}}
+          </ion-item>
+        </ion-list>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

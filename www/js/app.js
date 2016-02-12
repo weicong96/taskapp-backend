@@ -21,7 +21,6 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
     }
   });
 })
-
 .config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
   $stateProvider
 
@@ -31,11 +30,11 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.addTask', {
+      url: '/task?address',
       views: {
         'menuContent': {
-          templateUrl: 'templates/addTask.html',
+          templateUrl: 'htmljs/add-task/add-task.html',
           controller: 'AddTaskCtrl'
         }
       }
@@ -44,22 +43,22 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
     url: '/location',
     views: {
       'menuContent': {
-        templateUrl: 'templates/addLocation.html',
+        templateUrl: 'htmljs/choose-location/choose-location.html',
         controller: 'AddLocationCtrl'
       }
     }
   })
   .state('app.chooseLocation', {
-    url: '/chooseLocation',
+    url: '/chooseLocation/:address',
     views: {
       'menuContent': {
-        templateUrl: 'templates/chooseLocation.html',
+        templateUrl: 'htmljs/choose-location/choose-location.html',
         controller: 'ChooseLocationCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/chooseLocation');
+  $urlRouterProvider.otherwise('/app/task');
 
   $ionicConfigProvider.scrolling.jsScrolling(true);
 });
