@@ -23,7 +23,18 @@ if(Meteor.isServer){
 	var geocodeGoogle = function(){
 		return Meteor.wrapAsync(function(location, cb){
 			request("https://maps.googleapis.com/maps/api/place/textsearch/json?location=1.300,103.800&radius=50000&key="+Meteor.settings.googleApiKey+"&query="+location, function(err, result,body){
-
+				var parsed = JSON.parse(body)['results'];
+				var entries = [];
+				parsed.forEach(function(item){
+					entries.push({
+						name : item['name'],
+						source : "GGeocode",
+						id : item['place_id'],
+						lat : item['geometry']['location']['lat'],
+						lng : item['geometry']['location']['lng']
+					});
+				});
+				cb(err, entries);
 			});
 		});
 	}
@@ -48,10 +59,13 @@ if(Meteor.isServer){
 	Meteor.methods({
 		geocode : function(text){
 			//Session.set("test", Session.get("test") == null ? 0 : Session.get("test")+1);
-			var googleResult = googleSearch()(text);
-			var fsqResult = foursquareSearch()(text);
-			var results = googleResult.concat(fsqResult);
-
+			if(text != "" && text.length != 0){
+				var googleResult = googleSearch()(text);
+				var fsqResult = foursquareSearch()(text);
+				var geocodeResults = geocodeGoogle()(text);
+				var results = googleResult.concat(fsqResult);
+				results = results.concat(geocodeResults);
+			}
 
 			return results;
 		}

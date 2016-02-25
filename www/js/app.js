@@ -31,11 +31,17 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
     controller: 'AppCtrl'
   })
     .state('app.addTask', {
-      url: '/task?address',
+      url: '/task',
+      params : {
+        lat : "-1",
+        lng : "-1",
+        address : ""
+      },
       views: {
         'menuContent': {
           templateUrl: 'htmljs/add-task/add-task.html',
-          controller: 'AddTaskCtrl'
+          controller: 'AddTaskCtrl',
+          controllerAs: "addTask"
         }
       }
     })
@@ -53,7 +59,8 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
     views: {
       'menuContent': {
         templateUrl: 'htmljs/choose-location/choose-location.html',
-        controller: 'ChooseLocationCtrl'
+        controller: 'ChooseLocationCtrl',
+        controllerAs : "chooseLocation"
       }
     }
   });

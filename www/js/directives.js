@@ -9,12 +9,15 @@ angular.module('starter.controllers')
       zoom : "="
     },
     link  : function(scope, elem){
-
     },
     controller : function($scope,NgMap,Geocode){
+      if(!$scope.zoom){
+        $scope.zoom = 12;
+      }
       NgMap.getMap().then(function(map){
         $scope.map = map;
         $scope.$watch("zoom", function(){
+          console.log("change zoom");
           $scope.map.setZoom($scope.zoom);
         });
         $scope.$watch("markers" , function(_new, old){
@@ -29,16 +32,15 @@ angular.module('starter.controllers')
             });
           }
         });
-        $scope.$watch("center", function(){
-          if(typeof $scope.center == "string"){
-            Geocode($scope.center).then(function(result){
-                $scope.map.setCenter({lat : parseFloat(result[0]["geometry"]["location"]["lat"]()), lng : parseFloat(result[0]["geometry"]["location"]["lng"])});
-                console.log("gll");
-            });
-          }else if(typeof $scope.center == "object"){
-            $scope.map.setCenter($scope.center)
-            console.log("set center");
-          }
+        $scope.$watch("center", function(_new, old){
+            if(_new != "" && typeof $scope.center == "string"){
+              Geocode($scope.center).then(function(result){
+                  $scope.map.setCenter({lat : parseFloat(result[0]["lat"]), lng : parseFloat(result[0]["lng"])});
+              });
+            }else if(typeof $scope.center == "object" && Object.keys($scope.center).length != 0){
+              $scope.map.setCenter($scope.center);
+            }
+          
         });
       });
     },
@@ -48,7 +50,6 @@ angular.module('starter.controllers')
 .directive('focusMe', function ($timeout) {
   return {
     link: function (scope, element, attrs) {
-      console.log("link");
       if (attrs.focusMeDisable === "true") {
         return;
       }

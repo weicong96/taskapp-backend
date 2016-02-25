@@ -4,14 +4,15 @@
       <div class="overlay-input bar bar-header item-input-inset">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
-          <input type="search" placeholder="Search" ng-model='address.name' ng-click="chooseLocation()">
+          <input type="search" placeholder="Search" ng-model='chooseLocation.address.name' ng-click="chooseLocation.chooseLocation()" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
         </label>
-        <button ng-click="useLocation()" class="button button-clear">
+        <button ng-click="chooseLocation.useLocation()" class="button button-clear">
           Use this
         </button>
       </div>
 
-      <my-map zoom='zoom' center='center' markers='markers'></my-map>
+      <my-map zoom='chooseLocation.zoom' center='chooseLocation.center' markers='chooseLocation.markers'></my-map>
+
     </div>
   </ion-content>
 </ion-view>

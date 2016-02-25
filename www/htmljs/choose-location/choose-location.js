@@ -1,46 +1,51 @@
 angular.module('starter.controllers')
-.controller("ChooseLocationCtrl" , function($scope, $state, $ionicModal, $ionicScrollDelegate, $ionicHistory, Geocode){
-  $scope.markers = [];
-  var modalScope = $scope.$new(true);
-  modalScope['geocode'] = function(text){
+.controller("ChooseLocationCtrl" , function($scope, $state, $ionicModal, $ionicScrollDelegate, $ionicHistory, $ionicLoading,$reactive,Geocode){
+  $reactive(this).attach($scope);
 
-    Geocode(text).then(function(results){
-        modalScope.results = results;
-    });
-  }
-  modalScope['selectResult'] = function(result){
-    $scope.modal.hide();
-    $scope.zoom = 18;
-    $scope.markers = [new google.maps.Marker({
-      position : {
+  var vm = this;
+  this.markers = [];
+  this.center = "";
+  this.modalScope = $scope.$new(true);
+  this.modalScope = angular.extend(this.modalScope, {
+    geocode : function(text){
+      $ionicLoading.show({
+        template : "Loading.."
+      });
+      Geocode(text).then(function(results){
+          vm.modalScope.results = results;
+          $ionicLoading.hide();
+      });
+    },
+    selectResult : function(result){
+      vm.modal.hide();
+      vm.zoom = 18;
+      vm.markers = [new google.maps.Marker({
+        position : {
+          lat : result["lat"],
+          lng : result["lng"],
+        }
+      })];
+      vm.center = {
         lat : result["lat"],
-        lng : result["lng"],
-      }
-    })];
-    $scope.center = {
-      lat : result["lat"],
-      lng : result["lng"]
-    };
-    $scope.address = result;
-  }
+        lng : result["lng"]
+      };
+      vm.address = result;
+    }
+  });
 
   $ionicModal.fromTemplateUrl('htmljs/search-location/search-location.html', {
-    scope : modalScope
+    scope : this.modalScope
   }).then(function(modal){
-    $scope.modal = modal;
+    vm.modal = modal;
   });
-  $scope.chooseLocation = function(){
-    $scope.modal.show();
+  this.chooseLocation = function(){
+    this.modal.show();
   }
-  $scope.useLocation = function(){
-    $ionicHistory.nextViewOptions({
-      disableBack : true
-    });
-    console.log(modalScope);
-    $state.go("app.addTask", {
-      lat : $scope.address['lat'],
-      lng : $scope.address['lng']
-    });
+  this.useLocation = function(){
+   // $ionicHistory.nextViewOptions({
+    //  disableBack : true
+   // });
+    $ionicHistory.goBack();
   }
 
 });

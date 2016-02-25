@@ -9,16 +9,16 @@
       <div class="bottom-form">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Task Name</span>
-          <input type="text" placeholder="Describe your task eg. buy groceries">
+          <input type="text" placeholder="Describe your task eg. buy groceries" ng-model="vm.task.title">
         </label>
 
         <label class="item item-stacked-label">
-          <span class="item-stacked-label" style="margin-bottom: 8px;">Location</span>
-          <div ng-show="location == undefined">
-            <p>{{ location+'  '+location }}</p>
-            <my-map id='task-map'></my-map>
+          <span class="item-stacked-label" style="margin-bottom: 8px;" >Location</span>
+          <div ng-show="addTask.location != undefined">
+            <!--<p>{{ location+'  '+location }}</p>-->
+            <my-map zoom='addTask.zoom' center='addTask.center' markers='addTask.markers'></my-map>
           </div>
-          <div on-tap="openModal()" ng-show="location == undefined">
+          <div on-tap="addTask.openModal()" ng-show="addTask.location == undefined">
             <a class="button button-icon icon ion-plus-round">&nbsp;</a>
             <span class="input-label">Add your location</span>
           </div>
@@ -27,9 +27,9 @@
           <div class="input-label">
             Inform me when :
           </div>
-          <select>
-            <option>Entering</option>
-            <option selected>Leaving</option>
+          <select ng-model="vm.task.inform">
+            <option value='entering'>Entering</option>
+            <option value='leaving' selected>Leaving</option>
           </select>
         </label>
       </div>
@@ -37,7 +37,7 @@
 
   </ion-content>
       <div>
-        <button class="button button-full button-positive button-bottom-scroll">
+        <button class="button button-full button-positive button-bottom-scroll" ng-click='addTask.addTask()'>
           Create Task
         </button>
       </div>
