@@ -27,20 +27,25 @@ angular.module('starter.controllers')
             });
           }
           if($scope.markers != null){
-            $scope.markers.forEach(function(marker){
-              marker.setMap($scope.map);
-            });
+            setTimeout(function(){
+              $scope.markers.forEach(function(marker){
+                marker.setMap($scope.map);
+              });
+            },100);
           }
         });
         $scope.$watch("center", function(_new, old){
+
             if(_new != "" && typeof $scope.center == "string"){
               Geocode($scope.center).then(function(result){
                   $scope.map.setCenter({lat : parseFloat(result[0]["lat"]), lng : parseFloat(result[0]["lng"])});
               });
             }else if(typeof $scope.center == "object" && Object.keys($scope.center).length != 0){
-              $scope.map.setCenter($scope.center);
+              setTimeout(function(){
+                $scope.map.setCenter($scope.center);
+              }, 100);
             }
-          
+
         });
       });
     },

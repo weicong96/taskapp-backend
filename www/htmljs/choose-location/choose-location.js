@@ -29,7 +29,7 @@ angular.module('starter.controllers')
         lat : result["lat"],
         lng : result["lng"]
       };
-      vm.address = result;
+      vm.address = result['name'];
     }
   });
 
@@ -42,10 +42,14 @@ angular.module('starter.controllers')
     this.modal.show();
   }
   this.useLocation = function(){
-   // $ionicHistory.nextViewOptions({
-    //  disableBack : true
-   // });
-    $ionicHistory.goBack();
+    /*
+    console.log($ionicHistory.viewHistory());
+    $ionicHistory.backView().stateParams = {
+      lat : vm.center["lat"],
+      lng : vm.center["lng"],
+      address : vm.address
+    };
+    $ionicHistory.goBack(-1);*/
   }
 
 });

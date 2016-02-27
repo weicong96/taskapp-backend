@@ -17,6 +17,7 @@
           <div ng-show="addTask.location != undefined">
             <!--<p>{{ location+'  '+location }}</p>-->
             <my-map zoom='addTask.zoom' center='addTask.center' markers='addTask.markers'></my-map>
+            {{ addTask.location }}
           </div>
           <div on-tap="addTask.openModal()" ng-show="addTask.location == undefined">
             <a class="button button-icon icon ion-plus-round">&nbsp;</a>
