@@ -27,8 +27,8 @@ angular.module('starter.controllers', ["angular-meteor"])
       var key = $state['current']['name'];
       store[key]=data;
     },
-    getData : function(key){
-      return store[key];
+    getData : function(){
+      return store[$state['current']['name']];
     }
   };
 })

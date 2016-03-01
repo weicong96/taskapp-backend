@@ -45,17 +45,8 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
         }
       }
     })
-  .state('app.addLocation', {
-    url: '/location',
-    views: {
-      'menuContent': {
-        templateUrl: 'htmljs/choose-location/choose-location.html',
-        controller: 'AddLocationCtrl'
-      }
-    }
-  })
   .state('app.chooseLocation', {
-    url: '/chooseLocation/:address',
+    url: '/chooseLocation/',
     views: {
       'menuContent': {
         templateUrl: 'htmljs/choose-location/choose-location.html',

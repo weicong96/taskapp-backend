@@ -30,6 +30,7 @@ angular.module('starter.controllers')
         lng : result["lng"]
       };
       vm.address = result['name'];
+      console.log(vm.address);
     }
   });
 
@@ -50,6 +51,14 @@ angular.module('starter.controllers')
       address : vm.address
     };
     $ionicHistory.goBack(-1);*/
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+    $state.go("app.addTask",{
+      lat : vm.center["lat"],
+      lng : vm.center["lng"],
+      address : vm.address
+    });
   }
 
 });

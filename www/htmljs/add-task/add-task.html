@@ -9,7 +9,7 @@
       <div class="bottom-form">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Task Name</span>
-          <input type="text" placeholder="Describe your task eg. buy groceries" ng-model="vm.task.title">
+          <input type="text" placeholder="Describe your task eg. buy groceries" ng-model="addTask.task.title">
         </label>
 
         <label class="item item-stacked-label">
@@ -28,9 +28,9 @@
           <div class="input-label">
             Inform me when :
           </div>
-          <select ng-model="vm.task.inform">
-            <option value='entering'>Entering</option>
-            <option value='leaving' selected>Leaving</option>
+          <select ng-model="addTask.task.inform">
+            <option value='0'>Entering</option>
+            <option value='1' selected>Leaving</option>
           </select>
         </label>
       </div>
