@@ -7,6 +7,7 @@
 angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
 
 .run(function($ionicPlatform) {
+  console.log("Started app");
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -59,4 +60,6 @@ angular.module('starter', ['ionic', 'starter.controllers','ngMap'])
   $urlRouterProvider.otherwise('/app/task');
 
   $ionicConfigProvider.scrolling.jsScrolling(true);
+
+  var backgroundGeo = window.BackgroundGeolocation;
 });
